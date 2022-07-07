@@ -1,0 +1,47 @@
+<header>
+    <nav>
+        <div class="nav_logo"><img src="/img/logo.jpg" alt=""></div>
+        <a href="/productos" class="nav_volver"><</a>
+    </nav>
+    <%- include('partials/error_mensaje.ejs') %>
+</header>
+
+<main>
+    <% if(pedido.length > 0){ %>
+    <div class="pedido">
+
+        <span class="nombre_columna nombre_columna_1">Producto</span>
+        <span class="nombre_columna nombre_columna_2">Cantidad</span>
+        <span class="nombre_columna nombre_columna_3">Precio</span>
+        
+        <% var i = 0 %>
+        <% var total = 0 %>
+        <% pedido.forEach(function(p){ %>
+        <span class="elemento_tabla nombre"><%= p.producto.Nombre %></span>
+        <span class="elemento_tabla cantidad"><%= p.cantidad%></span>
+        <span class="elemento_tabla precio">$<%= p.producto.Precio * p.cantidad %></span>
+        <% total+= p.producto.Precio * p.cantidad %>
+        <button href="" class="elemento_tabla sumar_restar"  onclick="mostrarOpcionesSuma(<%= i %>)"><span>+</span></button>
+        <button href="" class="elemento_tabla sumar_restar" onclick="mostrarOpcionesResta(<%= i %>)"><span >-</span></button>
+
+        <%- include('partials/sumar_cantidad.ejs', {p: p.producto, ruta: 'pedido'}) %>
+        <%- include('partials/restar_cantidad.ejs', {p: p.producto}) %>
+
+        <% i++ %>
+
+        <% }) %>
+
+        <span class="total">Total:</span>
+        <span>$<%= total %></span>
+
+    
+    
+    </div>
+    <a class="boton_whatsapp" href="<%= url_whatsapp %>">Enviar pedido por WhatsApp</a>
+    <% }else{ %>
+        <h3>No hay productos agregados al pedido</h3>
+    <% } %>
+</main>
+
+<script src="/js/mostrar_sumar_cantidad.js"></script>
+<script src="/js/mostrar_restar_cantidad.js"></script>

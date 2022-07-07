@@ -1,0 +1,52 @@
+<header>
+    <nav>
+        <div class="nav_logo"><img src="/img/logo.jpg" alt=""></div>
+        <a href="/pedido" class="nav_pedido">Ver Pedido</a>
+    </nav>
+    <%- include('partials/error_mensaje.ejs') %>
+</header>
+
+<div class="filtro">
+    <select class="select_filtro"  onchange="location = this.value;">
+
+        <% if(seccion_seleccionada == 0){%>
+            <option value="/productos" selected="selected">Todo</option>
+        <% }else{ %>
+            <option value="/productos">Todo</option>
+        <% } %>
+
+        <% secciones.forEach(function(sec){ %>
+            
+            <% if(seccion_seleccionada == sec.Id){%>
+                <option value="/productos/<%= sec.Id %>" selected="selected"> <%= sec.Nombre %> </option>    
+            <% }else{ %>
+                <option value="/productos/<%= sec.Id %>"> <%= sec.Nombre %> </option>
+            <% } %>
+        <% }) %>
+
+    </select>
+</div>
+
+<article>
+
+    <% var i = 0 %>
+    <% productos.forEach(function(p){ %>
+       
+        <section class="producto">
+            <h3 class="producto_nombre"><%= p.Nombre %></h3>
+            <iframe class="producto_imagen" src="<%= p.Link_Imagen %>embed" frameborder="0"></iframe>
+            <p class="producto_descripcion"><%= p.Descripcion %></p>
+            <button id="mostrar_opciones" class="boton_mostrar_opciones" onclick="mostrarOpcionesSuma(<%= i %>)">Agregar a pedido</button>
+            <%- include('partials/sumar_cantidad', {p, ruta: 'productos'}) %>
+            <% i++ %>
+            
+        </section>
+    <% }) %>
+</article>
+
+
+<script src="/js/mostrar_sumar_cantidad.js"></script>
+
+
+
+
