@@ -1,0 +1,48 @@
+form{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form label{
+    font-size: 18px;
+}
+
+form input{
+    width: 200px;
+    height: 20px;
+    border-radius: 20px;
+    padding-left: 10px;
+    font-size: 15px;
+    margin: 10px 0 30px 0;
+}
+
+.botones{
+    display: flex;
+    flex-direction: row;
+}
+
+.boton{
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton_cancelar{
+    text-decoration: none;
+    background-color: rgb(199, 197, 197);
+}
+
+.boton_aceptar{
+    background-color: rgb(255, 221, 91);
+    margin-left: 10px;
+}

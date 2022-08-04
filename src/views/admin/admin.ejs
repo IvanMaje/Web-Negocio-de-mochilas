@@ -1,0 +1,69 @@
+<header>
+    <nav>
+        <div class="nav_logo"><img src="/img/logo.jpg" alt=""></div>
+        <a href="/admin/logout" class="nav_cerrar_sesion">Cerrar sesion</a>
+    </nav>
+    <%- include('../partials/mensaje.ejs') %>
+</header>
+
+<div class="botones_crear">
+    <a href="/admin/nueva_seccion" class="boton">Nueva seccion</a>
+    <a href="/admin/nuevo_producto" class="boton">Nuevo producto</a>
+</div>
+
+<article>
+
+    <% var i = 0 %>
+    <% productos.forEach(function(p){ %>
+       
+        <section class="producto">
+
+            <h3 class="producto_nombre"><%= p.Nombre %></h3>
+            <iframe class="producto_imagen" src="<%= p.Link_Imagen %>embed" frameborder="0"></iframe>
+            <span class="producto_precio">$<%= p.Precio %></span>
+            <p class="producto_descripcion"><%= p.Descripcion %></p>
+            
+            <div class="botones">
+
+                <button id="borrar" class="boton boton_borrar" onclick="borrar(<%= i %>)">Borrar</button>
+                <button id="editar" class="boton boton_editar" onclick="editar(<%= i %>)">Editar</button>
+
+            </div>
+
+            <div class="botones confirmar_borrado">
+                <button onclick="ocultarBorrado(<%= i %>)" class="boton boton_cancelar">Cancelar</button>
+                <a href="/admin/eliminar_producto/<%= p.Id %>" class="boton boton_borrar">Borrar</a>
+            </div>
+
+            <div class="confirmar_edicion">
+                <form class="formulario_producto" action="/admin/editar_producto/<%= p.Id %>" method="POST">
+                    <label class="label_nombre">Nombre de producto</label>
+                    <input class="formulario_input input_nombre" type="text" name="Nombre" value="<%= p.Nombre %>">
+            
+                    <label class="label_descripcion">Descripcion</label>
+                    <textarea class="formulario_input input_descripcion" name="Descripcion"><%= p.Descripcion %></textarea>
+            
+                    <label class="label_precio">Precio</label>
+                    <input class="formulario_input input_precio" type="text" name="Precio" value="<%= p.Precio %>">
+            
+                    <label class="label_link_imagen">Link imagen</label>
+                    <input class="formulario_input input_link_imagen" type="text" name="Link_Imagen" value="<%= p.Link_Imagen %>">
+            
+                    <div class="botones formulario_botones">
+
+                        <input class="boton boton_cancelar" type="button" onclick="ocultarEdicion(<%= i %>)" value="Cancelar">
+                        <button type="submit" class="boton boton_editar">Editar</button>
+
+                    </div>
+            
+                </form>
+                <% i++ %>
+            </div>
+            
+        </section>
+    <% }) %>
+</article>
+
+<script src="/js/editarYborrar.js"></script>
+
+

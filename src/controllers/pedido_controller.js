@@ -9,8 +9,6 @@ class Pedido_controller{
     
         const url_whatsapp = Pedido_controller.armarMensaje(pedido);
         
-    
-        console.log(url_whatsapp)
         res.render('pedido', {pedido, titulo: 'Pedido', archivo_css:'pedido', url_whatsapp});
     }
     
@@ -35,9 +33,14 @@ class Pedido_controller{
         const pedido = req.session.pedido;
     
         const producto = await connection.query('SELECT * FROM productos WHERE Id = ?', [req.params.idProducto]);
-    
-        Pedido_controller.existeProducto(producto); // Chequeo que me enviaron un producto valido
-    
+        console.log(producto);
+        console.log(req.params.idProducto);
+        const existe = Pedido_controller.existeProducto(req, res, producto); // Chequeo que me enviaron un producto valido
+        console.log(existe);
+        if(!existe){
+            console.log('entre2');
+            return res.redirect('/productos');
+        }
         
         const pos = Pedido_controller.verificarSiEsta(pedido, producto);
 
@@ -48,6 +51,7 @@ class Pedido_controller{
                 producto: producto[0],
                 cantidad: parseInt(cantidad)
             });
+            console.log('entre');
         }else{
             pedido[pos].cantidad+= parseInt(cantidad);
         }
@@ -73,7 +77,11 @@ class Pedido_controller{
     
         const producto = await connection.query('SELECT * FROM productos WHERE Id = ?', [req.params.idProducto]);
     
-        Pedido_controller.existeProducto(producto); // Chequeo que me enviaron un producto valido
+        const existe = Pedido_controller.existeProducto(req, res, producto); // Chequeo que me enviaron un producto valido
+
+        if(!existe){
+            return res.redirect('/pedido');
+        }
     
         const pos = Pedido_controller.verificarSiEsta(pedido, producto);
     
@@ -104,11 +112,14 @@ class Pedido_controller{
         }
     }
 
-    static existeProducto(producto){
+    static existeProducto(req, res, producto){
         if(producto[0] == undefined){  //En caso de no estar el producto con el id recibido devuelvo error
             req.flash('error_msg', 'Error con el producto');
-            return res.redirect('/pedido');
+            console.log('es acaaaa');
+            return false;
         }
+        console.log('aumm');
+        return true;
     }
 
     static verificarSiEsta(pedido, producto){     // Verifica si el producto ya estaba en el pedido.

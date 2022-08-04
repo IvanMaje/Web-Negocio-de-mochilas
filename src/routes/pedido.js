@@ -1,5 +1,4 @@
 const express = require('express');
-const connection = require('../database');
 const router = express.Router();
 
 const pedido_controller = require('../controllers/pedido_controller.js');

@@ -13,7 +13,7 @@ class Productos_controller{
         var productos = await Productos_controller.verificarProductosGuardados(req, connection);
         var secciones = await Productos_controller.verificarSeccionesGuardadadas(req, connection);
 
-        
+        console.log(req.session.pedido);
 
         var productosFiltrados = [];
         var seccion_seleccionada = 0;
@@ -23,7 +23,6 @@ class Productos_controller{
         }else{
             seccion_seleccionada = Productos_controller.filtrarProductosPorSeccion(req, productos, productosFiltrados);
         }
-
 
         res.render('productos.ejs', {secciones, seccion_seleccionada, productos: productosFiltrados, titulo: 'Inicio', archivo_css:'productos'});
     }
@@ -64,7 +63,6 @@ class Productos_controller{
 
 
     static filtrarProductosPorSeccion(req, productos, productosFiltrados){
-        
         var seccion_seleccionada= req.params.idSeccion;
         productos.forEach(function(p){ 
             if(p.SeccionId == seccion_seleccionada){
@@ -75,10 +73,10 @@ class Productos_controller{
         if(productosFiltrados.length == 0){     // Si no hay productos en la seccion recibida se devuelve un 0
                                                 // para que se muestren todos los productos
             req.flash('error_msg', 'No hay productos en esa seccion');
-            seccion_seleccionada = 0;
-            productosFiltrados = productos
+            console.log('entre');
         }
-
+       
+            
         return seccion_seleccionada;
     }
 }

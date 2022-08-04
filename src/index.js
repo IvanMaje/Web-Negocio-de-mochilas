@@ -8,7 +8,7 @@ const app = express();
 require('./database');
 
 //Settings
-app.set('port', 4000);
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(expressLayouts);
@@ -39,6 +39,7 @@ app.use((req, res, next) => {
 //Routes
 app.use(require('./routes/productos'));
 app.use(require('./routes/pedido'));
+app.use(require('./routes/admin'));
 
 
 app.use(express.static(path.join(__dirname, 'public')));

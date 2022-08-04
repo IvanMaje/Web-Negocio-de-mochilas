@@ -3,7 +3,7 @@
         <div class="nav_logo"><img src="/img/logo.jpg" alt=""></div>
         <a href="/pedido" class="nav_pedido">Ver Pedido</a>
     </nav>
-    <%- include('partials/error_mensaje.ejs') %>
+    <%- include('partials/mensaje.ejs') %>
 </header>
 
 <div class="filtro">
@@ -35,6 +35,7 @@
         <section class="producto">
             <h3 class="producto_nombre"><%= p.Nombre %></h3>
             <iframe class="producto_imagen" src="<%= p.Link_Imagen %>embed" frameborder="0"></iframe>
+            <span class="producto_precio">$<%= p.Precio %></span>
             <p class="producto_descripcion"><%= p.Descripcion %></p>
             <button id="mostrar_opciones" class="boton_mostrar_opciones" onclick="mostrarOpcionesSuma(<%= i %>)">Agregar a pedido</button>
             <%- include('partials/sumar_cantidad', {p, ruta: 'productos'}) %>

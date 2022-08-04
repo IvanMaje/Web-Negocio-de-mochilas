@@ -1,0 +1,34 @@
+<div class="contenedor">
+
+    <form class="formulario_producto" action="/admin/nuevo_producto" method="POST">
+        <label class="label_nombre">Nombre de producto</label>
+        <input class="input_nombre" type="text" name="Nombre">
+
+        <label class="label_seccion">Seccion</label>
+        <select class="seccion" name="SeccionId">
+
+            <% secciones.forEach(function(sec){ %>
+                
+                <option value="<%= sec.Id %>"> <%= sec.Nombre %> </option>
+
+            <% }) %>
+    
+        </select>
+
+        <label class="label_descripcion">Descripcion</label>
+        <input class="input_descripcion" type="text" name="Descripcion">
+
+        <label class="label_precio">Precio</label>
+        <input class="input_precio" type="text" name="Precio">
+
+        <label class="label_link_imagen">Link imagen</label>
+        <input class="input_link_imagen" type="text" name="Link_Imagen">
+
+        <div class="formulario_botones">
+            <a class="boton boton_cancelar" href="/admin">Cancelar</a>
+            <button class="boton boton_aceptar" type="submit">Aceptar</button>
+        </div>
+
+    </form>
+
+</div>
