@@ -14,7 +14,7 @@ class Pedido_controller{
     
     static armarMensaje(pedido){
         if(pedido.length > 0){
-            var mensaje = "https://api.whatsapp.com/send?phone=+5491131243530&text=Hola,%20me%20gustaria%20hacer%20el%20siguiente%20pedido:%0A"
+            var mensaje = "https://api.whatsapp.com/send?phone=+54911111111&text=Hola,%20me%20gustaria%20hacer%20el%20siguiente%20pedido:%0A"
             pedido.forEach(p => {
                 var aux = p.cantidad + "%20" + p.producto.Nombre + "%0A";
                 mensaje+= aux;
