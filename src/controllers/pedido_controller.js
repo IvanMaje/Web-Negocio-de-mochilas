@@ -59,7 +59,8 @@ class Pedido_controller{
         req.session.pedido= pedido;
     
         const ruta = req.params.ruta;
-        res.redirect('/' + ruta);
+            console.log('entre2');
+            res.redirect('/' + ruta);
     }
 
 

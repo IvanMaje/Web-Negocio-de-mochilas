@@ -6,14 +6,9 @@ class Productos_controller{
 
         Productos_controller.verificarPedidoCreado(req);
 
-        //Para renderizar el index necesito los productos y las secciones.
-        //A continuacion controlo si ya estan guardados en la sesion. (Para evitar buscarlos devuelta en la base de datos)
-        //En caso de que no los busco en la base de datos.
-
-        var productos = await Productos_controller.verificarProductosGuardados(req, connection);
-        var secciones = await Productos_controller.verificarSeccionesGuardadadas(req, connection);
-
-        console.log(req.session.pedido);
+        productos = await connection.query('SELECT * FROM productos');
+        secciones = await connection.query('SELECT * FROM secciones');
+     
 
         var productosFiltrados = [];
         var seccion_seleccionada = 0;
@@ -24,6 +19,7 @@ class Productos_controller{
             seccion_seleccionada = Productos_controller.filtrarProductosPorSeccion(req, productos, productosFiltrados);
         }
 
+        console.log(productos);
         res.render('productos.ejs', {secciones, seccion_seleccionada, productos: productosFiltrados, titulo: 'Inicio', archivo_css:'productos'});
     }
 
@@ -33,32 +29,6 @@ class Productos_controller{
             req.session.pedido = [];//Controlo que el carrito este creado
                                     //En caso de que no, lo inicializo.
         }
-    }
-
-
-    static async verificarProductosGuardados(req, connection){
-        var productos
-        if(!req.session.productos){
-            productos = await connection.query('SELECT * FROM productos');
-            req.session.productos = productos;
-        }else{
-            productos = req.session.productos;
-        }
-        return productos;
-    }
-
-
-    static async verificarSeccionesGuardadadas(req, connection){
-        var secciones
-        if(!req.session.secciones){
-            secciones = await connection.query('SELECT * FROM secciones');
-            
-            req.session.secciones = secciones;
-        }else{
-            secciones = req.session.secciones;
-        }
-
-        return secciones;
     }
 
 

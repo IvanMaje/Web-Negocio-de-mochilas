@@ -7,12 +7,6 @@ const {encryptPassword } = require('../helpers/encrypt');
 const admin_controller = require('../controllers/admin_controller.js');
 const controller = new admin_controller;
 
-router.get('/admin/aaa', async (req, res) => {
-    const contra = await encryptPassword('grinagus1');
-    contraseña = {Contraseña: contra}
-    await connection.query('INSERT INTO contraseña set ?', [contraseña]);
-    res.redirect('/');
-});
 
 router.get('/admin', isAuthenticated,  (req, res) => {controller.mostrarAdmin(req, res)});
 
@@ -33,6 +27,8 @@ router.post('/admin/nuevo_producto', isAuthenticated, (req, res) => {controller.
 router.post('/admin/editar_producto/:id', isAuthenticated, (req, res) => {controller.editarProducto(req, res)});
 
 router.get('/admin/eliminar_producto/:id', isAuthenticated, (req, res) => {controller.eliminarProducto(req, res)});
+
+router.get('/admin/eliminar_seccion/:id', isAuthenticated, (req, res) => {controller.eliminarSeccion(req, res)});
 
 
 module.exports = router;

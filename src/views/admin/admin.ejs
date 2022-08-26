@@ -11,11 +11,24 @@
     <a href="/admin/nuevo_producto" class="boton">Nuevo producto</a>
 </div>
 
+<div class="eliminar_seccion">
+    <select class="select_filtro"  onchange="location = this.value;">
+
+        <option value="/admin" selected="selected">Eliminar seccion</option>
+
+
+        <% secciones.forEach(function(sec){ %>
+            <option value="/admin/eliminar_seccion/<%= sec.Id %>" > <%= sec.Nombre %> </option>    
+        <% }) %>
+
+    </select>
+</div>
+
 <article>
 
     <% var i = 0 %>
     <% productos.forEach(function(p){ %>
-       
+        
         <section class="producto">
 
             <h3 class="producto_nombre"><%= p.Nombre %></h3>

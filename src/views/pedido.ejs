@@ -24,8 +24,8 @@
         <button href="" class="elemento_tabla sumar_restar"  onclick="mostrarOpcionesSuma(<%= i %>)"><span>+</span></button>
         <button href="" class="elemento_tabla sumar_restar" onclick="mostrarOpcionesResta(<%= i %>)"><span >-</span></button>
 
-        <%- include('partials/sumar_cantidad.ejs', {p: p.producto, ruta: 'pedido'}) %>
-        <%- include('partials/restar_cantidad.ejs', {p: p.producto}) %>
+        <%- include('partials/sumar_cantidad.ejs', {p: p.producto, ruta: 'pedido', i}) %>
+        <%- include('partials/restar_cantidad.ejs', {p: p.producto, i}) %>
 
         <% i++ %>
 

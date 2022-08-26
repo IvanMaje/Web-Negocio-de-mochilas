@@ -38,7 +38,7 @@
             <span class="producto_precio">$<%= p.Precio %></span>
             <p class="producto_descripcion"><%= p.Descripcion %></p>
             <button id="mostrar_opciones" class="boton_mostrar_opciones" onclick="mostrarOpcionesSuma(<%= i %>)">Agregar a pedido</button>
-            <%- include('partials/sumar_cantidad', {p, ruta: 'productos'}) %>
+            <%- include('partials/sumar_cantidad', {p, ruta: 'productos' , i}) %>
             <% i++ %>
             
         </section>

@@ -42,6 +42,7 @@ select {
     box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
     border-radius: 2px;
     background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 
 
@@ -107,6 +108,7 @@ article .producto .boton_mostrar_opciones{
     font-size: 17px;
     font-weight: bold;
     background-color: rgb(255, 221, 91);
+    color: black;
 }
 
 
@@ -146,20 +148,25 @@ article .producto .boton_mostrar_opciones{
     width: 60px;
 }
 
-.producto_cantidad .producto_boton_agregar{
-    width: 150px;
-    height: 40px;
+.producto_cantidad .boton_modificar_cantidad{
+    width: 140px;
+    height: 30px;
     border: none;
     border-radius: 20px;
     font-size: 16px;
     font-weight: bold;
+    margin: 15px 0;
+}
+
+.producto_cantidad .producto_boton_cancelar{
+    margin-right: 10px
 }
 
 .error{
     color: red;
 }
 
-@media (max-width: 680px){
+@media (max-width: 695px){
     .producto_sumar_cantidad form{
         flex-direction: column;
        
@@ -169,8 +176,7 @@ article .producto .boton_mostrar_opciones{
         margin: 0 0 0 10px;
     }
 
-    .producto_sumar_cantidad .producto_boton_agregar{
-        margin: 10px 0;
+    .producto_sumar_cantidad .boton_modificar_cantidad{
         width: 130px;
         height: 40px;
         font-size: 15px;

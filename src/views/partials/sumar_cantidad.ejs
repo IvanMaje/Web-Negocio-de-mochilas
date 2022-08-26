@@ -10,7 +10,9 @@
                 <option value="5">5</option>
             </select>
         </div>
-        <button class="producto_boton_agregar" type="submit">Agregar a pedido</button>
-        
+        <div class="producto_cantidad_botones">
+            <button class="producto_boton_cancelar boton_modificar_cantidad" type="button" onclick="ocultarOpcionesSuma(<%= i %>)">Cancelar</button>
+            <button class="producto_boton_agregar boton_modificar_cantidad" type="submit">Agregar a pedido</button>
+        </div>
     </form>
 </div>

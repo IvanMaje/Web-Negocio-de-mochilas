@@ -24,6 +24,18 @@ nav .nav_volver{
     color: rgb(0, 0, 0);
 }
 
+/*Selects*/
+select {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
+    border-radius: 2px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
 
 
 /*
@@ -121,13 +133,18 @@ main{
     width: 60px;
 }
 
-.producto_cantidad .producto_boton_agregar{
+.producto_cantidad .boton_modificar_cantidad{
     width: 150px;
     height: 40px;
     border: none;
     border-radius: 20px;
     font-size: 16px;
     font-weight: bold;
+    margin: 15px 0;
+}
+
+.producto_cantidad .producto_boton_cancelar{
+    margin-right: 10px
 }
 
 .boton_whatsapp{
@@ -147,6 +164,22 @@ main{
     z-index: 10;
 }
 
+@media (max-width: 680px){
+    .producto_cantidad form{
+        flex-direction: column;
+       
+    }
+
+    .producto_cantidad .select_cantidad{
+        margin: 0 0 0 10px;
+    }
+
+    .producto_cantidad .boton_modificar_cantidad{
+        width: 130px;
+        height: 40px;
+        font-size: 15px;
+    }
+}
 
 @media (max-width: 460px){
 

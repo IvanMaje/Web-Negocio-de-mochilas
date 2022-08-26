@@ -30,7 +30,7 @@ class Admin_Controller{
         //const contraseña = await connection.query('SELECT * FROM contraseña WHERE Id = ?', [1]);
         //const match = await matchPassword(contraseñaRecibida, contraseña[0].Contraseña);
 
-        if(/*match*/ contraseñaRecibida == '1234'){
+        if(/*match*/ contraseñaRecibida == 'grinagus1'){
             req.session.admin = true;
             return res.redirect('/admin')
         }else{
@@ -103,6 +103,16 @@ class Admin_Controller{
         const consulta = await connection.query('DELETE FROM productos WHERE Id = ?', [Id]);
 
         req.flash('succes_msg', 'Producto eliminado');
+
+        res.redirect('/admin')
+    }
+
+    async eliminarSeccion(req, res){
+        const Id = req.params.id;
+        
+        await connection.query('DELETE FROM secciones WHERE Id = ?', [Id]);
+        await connection.query('DELETE FROM productos WHERE SeccionId = ?', [Id]);
+        req.flash('succes_msg', 'Seccion eliminado');
 
         res.redirect('/admin')
     }
